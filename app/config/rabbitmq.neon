@@ -1,0 +1,16 @@
+rabbitmq:
+    connection:
+        user: guest
+        password: guest
+
+    producers:
+        facebookNotifications:
+            exchange: {name: 'facebook-notifications', type: direct}
+            queue: {name: 'facebook-notifications'}
+            contentType: application/json
+
+    consumers:
+        facebookNotifications:
+            exchange: {name: 'facebook-notifications', type: direct}
+            queue: {name: 'facebook-notifications'}
+            callback: @App\Facebook\NotificationSender::process
